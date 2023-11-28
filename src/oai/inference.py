@@ -96,7 +96,12 @@ def populate_completion_dataset(completion_dataset: CompletionDataset, dataset: 
                 if "reasoning_completion" not in completion_sample:
                     raise ValueError(
                         "All samples must contain a 'reasoning_completion' key for zs_cot step 2. Make sure to run step 1 for the same sample/completion indices")
-            completion_sample[prompt_key] = formatter(completion_sample, include_label=False)["input"]
+
+            if completion_dataset.dataset_key[:7] == 'multiwd':
+                m = completion_sample['question'].split(" ")[-7]
+                completion_sample[prompt_key] = formatter(completion_sample, include_label=False, multiwd=m)["input"]
+            else:
+                completion_sample[prompt_key] = formatter(completion_sample, include_label=False)["input"]
 
 
 def infer_completion_data(completion_metadata: CompletionMetadata, zs_cot_step: int = None,

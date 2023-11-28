@@ -16,6 +16,7 @@ DEFAULT_MODEL_IDS = [
     "text-davinci-001",
     "text-davinci-002",
     "text-davinci-003",
+    "gpt-3.5-turbo-instruct",
 ]
 
 

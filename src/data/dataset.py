@@ -38,6 +38,10 @@ DATASET_SIZES = {
 
     "commonsense_qa": 10962,
     "strategy_qa": 2290,
+
+    "lrf": 4928,
+    "multiwd": 17243,
+    "lrf_small": 100,
 }
 
 DATASET_KEYS = list(DATASET_SIZES.keys())

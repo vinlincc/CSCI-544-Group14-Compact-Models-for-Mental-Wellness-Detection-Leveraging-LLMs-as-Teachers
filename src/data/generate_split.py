@@ -30,7 +30,9 @@ def get_predefined_train_test_split(dataset_key) -> Optional[Tuple[List[int], Li
         train_subsample_size = 10000
         train_indices = list(range(train_size))
         state = np.random.RandomState(train_subsample_seed)
+        # randomly choose 10000 indices from 0-97466
         train_indices = sorted(state.permutation(train_indices)[:train_subsample_size].tolist())
+        # the rest of 254
         test_indices = list(range(train_size, train_size + test_size))
         return train_indices, test_indices
     if dataset_key == "gsm8k":
@@ -62,7 +64,9 @@ def get_random_train_test_indices(dataset_key: str, train_ratio=0.7, split_seed=
 
 
 if __name__ == "__main__":
+    # every dataset's size
     for dataset_key in DATASET_SIZES:
+        # path=project_path/split/dataset_key__default.json
         path = get_split_path(dataset_key, "default")
         if os.path.exists(path):
             print("Skipping `{}`. Split file already exists at: {}".format(dataset_key, path))

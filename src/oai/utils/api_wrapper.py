@@ -5,10 +5,12 @@ import traceback
 from datetime import datetime
 
 import openai
-
 from oai.utils.metadata import FINETUNE_IDS_PATH, MODEL_IDS_PATH, set_model_id, get_model_key
 from oai.utils.metadata import get_file_id, set_file_id, get_finetune_id, set_finetune_id
 from paths import get_finetune_data_path, SAVED_PATH
+
+from openai import OpenAI
+client = OpenAI()
 
 OPENAI_ERROR_LOG_PATH = os.path.join(SAVED_PATH, "openai_error_log.txt")
 
@@ -62,7 +64,7 @@ def create_finetune_file(finetune_key: str, overwrite=False):
     if not os.path.exists(path):
         raise FileNotFoundError("Finetune data file with file_key `{}` not found at: `{}`".format(finetune_key, path))
 
-    with open(path) as f:
+    with open(path,'rb') as f:
         response = openai.File.create(
             file=f,
             purpose='fine-tune'

@@ -129,7 +129,7 @@ class Evaluator:
             prediction = re.findall(r'-?\d+(?:\.\d+)?', prediction)
             if self.dataset_key in ("addsub", "svamp", "single_eq"):
                 prediction = [float(s) for s in prediction]
-        elif self.dataset_key in ("strategy_qa", "coin_flip"):
+        elif self.dataset_key in ("strategy_qa", "coin_flip", "lrf", "multiwd"):
             prediction = prediction.lower()
             prediction = re.sub("\"|\'|\n|\.|\s|\:|\,", " ", prediction)
             prediction = prediction.split(" ")

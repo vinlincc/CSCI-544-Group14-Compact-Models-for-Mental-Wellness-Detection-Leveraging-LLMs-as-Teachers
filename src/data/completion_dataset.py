@@ -205,7 +205,6 @@ class CompletionDataset:
         completion_key = completion_identifier.completion_key
         train_key = completion_identifier.train_key
         epoch = completion_identifier.epoch
-
         with open(get_completion_data_path(base_model, completion_key, dataset_key, train_key, epoch)) as f:
             raw_data = json.load(f)
         completions = CompletionDataset(raw_data)

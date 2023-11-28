@@ -5,6 +5,7 @@ from paths import FEW_SHOT_COT_PROMPTS_PATH
 
 
 def load_few_shot_cot_prompts():
+    # project_path/data/few_shot_cot_prompts.json
     with open(FEW_SHOT_COT_PROMPTS_PATH) as f:
         return json.load(f)
 
